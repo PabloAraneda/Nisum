@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "org.hibernate.orm" version "6.0.0.Alpha9"
+	
+}
+
+sourceSets {
+	main.java.srcDir "src/main/java"
+	main.resources.srcDir "src/main/resources"
+	test.java.srcDir "src/test/java"
+	test.resources.srcDir "src/test/resources"
+ }
+
+group = 'cl.nisum'
+version = '1.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.1'
+	testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.8.1'
+	runtimeOnly 'com.h2database:h2'
+}
+
+configurations {
+	all*.exclude module : 'spring-boot-starter-logging'
+}
+
+test {
+	useJUnitPlatform()
+}
